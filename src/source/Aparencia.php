@@ -4,7 +4,6 @@ namespace source;
 
 use customiesdevs\customies\item\CustomiesItemFactory;
 use pocketmine\event\Listener;
-use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\inventory\CreativeCategory;
 use pocketmine\plugin\PluginBase;
 use pocketmine\resourcepacks\ZippedResourcePack;
@@ -38,20 +37,9 @@ class Aparencia extends PluginBase implements Listener
     protected function onEnable(): void
     {
         self::setInstance($this);
-        CustomiesItemFactory::getInstance()->registerItem(teste_item::class, "toddy:item", "cannot_touch", CreativeCategory::EQUIPMENT);
         foreach (self::$cabelos as $cabelo){
             CustomiesItemFactory::getInstance()->registerItem(teste_item::class, "toddy:$cabelo", "$cabelo", CreativeCategory::EQUIPMENT);
         }
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
-    }
-
-    function onJoin(PlayerJoinEvent $event):void
-    {
-        $p = $event->getPlayer();
-        $inv = $p->getInventory();
-
-        $item = CustomiesItemFactory::getInstance()->get('toddy:item');
-
-        if(!$inv->contains($item)) $inv->addItem($item);
     }
 }

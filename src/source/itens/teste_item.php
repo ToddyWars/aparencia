@@ -3,7 +3,6 @@
 namespace source\itens;
 
 use customiesdevs\customies\item\component\AllowOffHandComponent;
-use customiesdevs\customies\item\component\HandEquippedComponent;
 use customiesdevs\customies\item\CreativeInventoryInfo;
 use customiesdevs\customies\item\ItemComponents;
 use customiesdevs\customies\item\ItemComponentsTrait;
@@ -16,9 +15,13 @@ class teste_item extends Item implements ItemComponents {
 
     public function __construct(ItemIdentifier $identifier, string $name = "Unknown") {
         parent::__construct($identifier, $name);
-        $this->addComponent(new HandEquippedComponent(true));
         $this->addComponent(new TagComponent([$name]));
         $this->addComponent(new AllowOffHandComponent());
         $this->initComponent('apple', new CreativeInventoryInfo(CreativeInventoryInfo::CATEGORY_EQUIPMENT, CreativeInventoryInfo::CATEGORY_EQUIPMENT));
+    }
+
+    public function getMaxStackSize(): int
+    {
+        return 1;
     }
 }
