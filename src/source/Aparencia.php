@@ -8,7 +8,6 @@ use pocketmine\inventory\CreativeCategory;
 use pocketmine\plugin\PluginBase;
 use pocketmine\resourcepacks\ZippedResourcePack;
 use pocketmine\utils\SingletonTrait;
-use ReflectionException;
 use source\itens\teste_item;
 use Symfony\Component\Filesystem\Path;
 
@@ -22,9 +21,6 @@ class Aparencia extends PluginBase implements Listener
         'ssj3',
     ];
 
-    /**
-     * @throws ReflectionException
-     */
     protected function onLoad(): void
     {
         $this->saveDefaultConfig();
