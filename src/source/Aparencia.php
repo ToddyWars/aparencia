@@ -14,13 +14,13 @@ use Symfony\Component\Filesystem\Path;
 
 class Aparencia extends PluginBase implements Listener
 {
+    use SingletonTrait;
     private static array $cabelos = [
         'base',
         'ssj1',
         'ssj2',
         'ssj3',
     ];
-    use SingletonTrait;
 
     /**
      * @throws ReflectionException
@@ -38,7 +38,7 @@ class Aparencia extends PluginBase implements Listener
     {
         self::setInstance($this);
         foreach (self::$cabelos as $cabelo){
-            CustomiesItemFactory::getInstance()->registerItem(teste_item::class, "toddy:$cabelo", "$cabelo", CreativeCategory::EQUIPMENT);
+            CustomiesItemFactory::getInstance()->registerItem(teste_item::class, "toddy:$cabelo", $cabelo, CreativeCategory::EQUIPMENT);
         }
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
